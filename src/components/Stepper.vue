@@ -1,34 +1,37 @@
 <template>
-    <div class="q-px-md full-width">
+    <div class="q-px-md flex flex-center full-width">
         <q-stepper v-model="step" ref="stepper" color="primary" animated flat>
             <q-step
                 :name="1"
-                title="Select campaign settings"
-                icon="settings"
+                title="Upload Certificate Design"
+                icon="upload"
                 :done="step > 1"
-                style="min-height: 200px;"
             >
-                <ImagePicker />
+                <!-- style="min-height: 200px;" -->
+                <div class="flex flex-center ">
+                  <ImagePicker/>
+                </div>
             </q-step>
 
             <q-step
                 :name="2"
-                title="Create an ad group"
-                caption="Optional"
+                title="Edit Position"
+                caption="Move participant name to the right position"
                 icon="create_new_folder"
                 :done="step > 2"
-                style="min-height: 200px;"
+                style="min-height: 60vh;"
             >An ad group contains one or more ads which target a shared set of keywords.</q-step>
 
             <q-step
                 :name="3"
-                title="Ad template"
+                title="Upload Participant"
+                caption="Import name and whatsapp number"
                 icon="assignment"
                 disable
                 style="min-height: 200px;"
             >This step won't show up because it is disabled.</q-step>
 
-            <q-step :name="4" title="Create an ad" icon="add_comment" style="min-height: 200px;">
+            <q-step :name="4" title="Generate & Send" icon="add_comment" style="min-height: 200px;">
                 Try out different ad text to see what brings in the most customers, and learn how to
                 enhance your ads using features like ad extensions. If you run into any problems with
                 your ads, find out how to tell if they're running and how to resolve approval issues.
@@ -38,6 +41,7 @@
                 <q-stepper-navigation>
                     <q-btn
                         @click="$refs.stepper.next()"
+                        class="float-right"
                         color="primary"
                         :label="step === 4 ? 'Finish' : 'Continue'"
                     />

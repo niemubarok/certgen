@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="text-center">
   <Stepper />
   </q-page>
 </template>

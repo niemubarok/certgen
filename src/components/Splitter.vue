@@ -4,6 +4,7 @@
       v-model="splitterModel"
       :limits="[20,100]"
       style="height: 90vh;width:90vw"
+      keep-alive
     >
 
       <template v-slot:before>
