@@ -6,23 +6,30 @@
       color="primary"
       style="max-width: 95%; max-height:95%"
       :contracted="$q.screen.lt.sm"
-      flat
       animated
       keep-alive
+      class="full-width"
     >
+    <template #message>
+      <!-- <q-banner class="bg-green-8"> -->
+        <q-chip class="bg-red-2">1. The file should .xls or .xlsx.</q-chip>
+        <q-chip class="bg-red-2">2. First column should be participant name </q-chip>
+        <q-chip class="bg-red-2">3. Second column should be whatsapp number </q-chip>
+      <!-- </q-banner> -->
+    </template>
+
+
       <q-step
         :name="1"
-        title="Upload Certificate Design"
+        title="Upload Participant Data"
         prefix="1"
         done-icon="check"
         done-color="positive"
         :done="step > 1"
-        class="full-width full-height flex flex-center"
+        class="row flex flex-center"
       >
-        <!-- <div class="flex flex-center full-width full-height"> -->
-        <ImagePicker ref="picker" />
+    <Participant />
 
-        <!-- </div> -->
       </q-step>
 
       <q-step
@@ -35,7 +42,8 @@
         done-color="positive"
         style="min-height: 90vh;"
       >
-        <CertificateCanvas />
+      <ImagePicker  />
+
       </q-step>
 
       <q-step
@@ -47,12 +55,10 @@
         :done="step > 3"
         done-icon="check"
         done-color="positive"
-      >This step won't show up because it is disabled.</q-step>
+      ><CertificateCanvas /></q-step>
 
       <q-step :name="4" prefix="4" title="Generate & Send" style="min-height: 200px;">
-        Try out different ad text to see what brings in the most customers, and learn how to
-        enhance your ads using features like ad extensions. If you run into any problems with
-        your ads, find out how to tell if they're running and how to resolve approval issues.
+
       </q-step>
 
       <template v-slot:navigation>
@@ -62,9 +68,9 @@
               @click="$refs.stepper.next()"
               class="fixed-bottom-right q-mr-xl q-mb-xl"
               color="primary"
-              :disable="store.imgSrc == 'https://picsum.photos/800/500'"
               :label="step === 4 ? 'Finish' : 'Continue'"
             ></q-btn>
+              <!-- :disable="!store.imgSrc == 'https://picsum.photos/800/500'" -->
             <q-tooltip v-if="store.imgSrc == 'https://picsum.photos/800/500'" class="text-white bg-secondary">Please select your Certificate first</q-tooltip>
           </div>
           <q-btn
@@ -106,6 +112,7 @@ import { onMounted, ref } from 'vue'
 import ImagePicker from './ImagePicker.vue'
 import CertificateCanvas from './CertificateCanvas.vue';
 import { useStore } from 'src/stores/useStore';
+import Participant from './Participant.vue';
 
 const store = useStore()
 const step = ref(1)
