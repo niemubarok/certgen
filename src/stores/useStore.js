@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useStore = defineStore('main', {
   state: () => ({
-    imgSrc:'https://picsum.photos/800/500',
+    imgSrc:'',
     participant:[]
   }),
   getters: {
@@ -13,5 +13,11 @@ export const useStore = defineStore('main', {
     setImgSrc(url){
       this.imgSrc = url
     },
+    clearImgSrc(){
+      this.imgSrc = ''
+    },
+    setParticipant(data){
+      this.participant.push(data)
+    }
   },
 });
